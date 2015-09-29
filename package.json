@@ -4,6 +4,7 @@
   "description": "api server for loading artist mobile app",
   "main": "index.js",
   "dependencies": {
+    "bluebird": "^2.10.1",
     "config": "^1.16.0",
     "mysql": "^2.9.0",
     "restify": "^4.0.2"

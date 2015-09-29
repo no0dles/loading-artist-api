@@ -23,7 +23,7 @@ server.use(
 server.get('/update', function (req, res, next) {
   return db.query('select max(last_update) last_update, max(id) last_id from comics')
     .then(function (rows) {
-      res.send(200, rows[0]);
+      res.send(200, rows[0][0]);
       return next();
     })
     .catch(function (err) {
