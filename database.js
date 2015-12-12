@@ -1,5 +1,6 @@
 var Promise = require('bluebird');
 var mysql = require('mysql');
+var fs = require("fs");
 
 function DB() {
   this.pool = null;
@@ -7,6 +8,18 @@ function DB() {
 
 DB.prototype.configure = function (config) {
   this.pool = mysql.createPool(config);
+};
+
+DB.prototype.init = function () {
+  var table_script = fs.readFileSync("scripts/create_table.sql", "utf8");
+
+  this.query(table_script).then(function (result) {
+    if(result[0].affectedRows > 0) {
+      console.log('created table');
+    }
+  }).catch(function (err) {
+    console.error(err);
+  });
 };
 
 DB.prototype.connection = function () {

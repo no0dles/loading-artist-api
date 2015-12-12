@@ -3,6 +3,7 @@ var config = require('config');
 var db = require('./database');
 
 db.configure(process.env.CLEARDB_DATABASE_URL || config.get('db'));
+db.init();
 
 var server = restify.createServer({
   name: 'loading-artist-server',
