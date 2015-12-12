@@ -13,9 +13,10 @@ build:
     - script:
         name: Environment variables
         code: |
-          export CLEARDB_DATABASE_URL=mysql://loadingartist:loadingartist@mysql/test?reconnect=true
+          export CLEARDB_DATABASE_URL="mysql://loadingartist:loadingartist@mysql/test?reconnect=true"
 
     - npm-install
+
     - npm-test
 
     - script:
