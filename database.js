@@ -1,6 +1,7 @@
 var Promise = require('bluebird');
 var mysql = require('mysql');
 var fs = require("fs");
+var config = require('config');
 
 function DB() {
   this.pool = null;
@@ -101,4 +102,9 @@ DB.prototype.end = function () {
   return defer.promise;
 };
 
-module.exports = new DB();
+var db = new DB();
+
+db.configure(process.env.CLEARDB_DATABASE_URL || config.get('db'));
+db.init();
+
+module.exports = db;
